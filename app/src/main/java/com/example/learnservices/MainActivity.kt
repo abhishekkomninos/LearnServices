@@ -7,11 +7,13 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.learnservices.TimerService.TimerBinder
 
 
+private const val TAG = "MAIN"
 class MainActivity : AppCompatActivity() {
     private val mService: TimerService? = null
     private var mBound = false
@@ -73,6 +75,11 @@ class MainActivity : AppCompatActivity() {
             unbindService(connection)
             mBound = false
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause: Logging this onPause")
     }
 
 
